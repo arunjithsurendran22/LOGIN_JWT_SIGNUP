@@ -173,6 +173,7 @@
             event.preventDefault();
             const todoText = document.getElementById("todoText").value;
             if (todoText) {
+                console.log(todoText);
                 // Send a request to create a new todo on the server
                 fetch("/todos", {
                     method: "POST",

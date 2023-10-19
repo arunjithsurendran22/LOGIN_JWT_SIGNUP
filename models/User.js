@@ -26,7 +26,12 @@ const userSchema = new mongoose.Schema({
         "Password must be at least 8 characters long and contain at least one special character (!@#$%^&*)",
     },
   },
+ 
 });
-
+const todoSchema = new mongoose.Schema({
+  text: String,
+  completed: Boolean,
+});
+const todo=mongoose.model('todo',todoSchema)
 const User = mongoose.model("users", userSchema);
-module.exports = User;
+module.exports = {User,todo}
