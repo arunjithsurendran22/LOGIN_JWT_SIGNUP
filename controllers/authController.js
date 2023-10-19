@@ -93,16 +93,5 @@ const login = async (req, res) => {
   }
 };
 
-//todo POST
-const todos = async (req, res) => {
-  const { text, completed } = req.body;
-  try {
-    const todo = await User.create({ text, completed });
-    res.json(todo);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ status: "error", error: "internal server error" });
-  }
-};
 
-module.exports = { signup, login, todos };
+module.exports = { signup, login  };

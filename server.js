@@ -29,10 +29,11 @@ mongoose
 
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
-
+const todoRoutes = require("./routes/authTodo");
 
 app.use(authRoutes);
 app.use(userRoutes);
+app.use(todoRoutes);
 
 const PORT = process.env.PORT || 3000;
 

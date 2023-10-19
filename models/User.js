@@ -28,10 +28,6 @@ const userSchema = new mongoose.Schema({
   },
  
 });
-const todoSchema = new mongoose.Schema({
-  text: String,
-  completed: Boolean,
-});
-const todo=mongoose.model('todo',todoSchema)
+
 const User = mongoose.model("users", userSchema);
-module.exports = {User,todo}
+module.exports = User
