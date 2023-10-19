@@ -73,22 +73,6 @@ const loginGet =(req,res)=>{
 const signupGet=(req,res)=>{
   res.render('signup')
 }
-const frontPage=(req,res)=>{
-  res.render('front-page')
-}
-
-//TODO GET
-const todo=async(req,res)=>{
-  try{
-    const todos=await User.find()
-    res.json(todos)
-  }catch(error){
-    console.log(error);
-    res.status(500).json({ status: "error", error: "Internal server error" });
-  }
-}
 
 
-
-
-module.exports = {home,profile,updateProfile,loginGet,signupGet,logout,frontPage}
+module.exports = {home,profile,updateProfile,loginGet,signupGet,logout}

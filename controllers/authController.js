@@ -87,7 +87,7 @@ const login = async (req, res) => {
       httpOnly: true,
     });
 
-    res.redirect("/");
+    res.redirect("/home");
   } else {
     res.status(401).json(response);
   }

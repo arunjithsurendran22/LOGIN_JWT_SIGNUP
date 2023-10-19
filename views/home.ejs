@@ -12,13 +12,10 @@
     <style>
         /* Custom CSS for added styles */
         body {
-            background: #FF2D00;
-            /* Gradient from light red to dark red */
+            background: linear-gradient(to bottom, #FF5733, #FF2D00); /* Gradient from light red to dark red */
         }
-
         .navbar {
-            background-color: #333;
-            /* Dark Gray */
+            background-color: #333; /* Dark Gray */
         }
 
         .navbar-dark .navbar-nav .nav-link {
@@ -53,44 +50,26 @@
         }
 
         .card-title {
-            color: #333;
-            /* Dark Gray */
+            color: #333; /* Dark Gray */
         }
 
         .card-text {
-            color: #555;
-            /* Gray */
+            color: #555; /* Gray */
         }
 
         .btn-custom {
-            background-color: #FF5733;
-            /* Light Red */
+            background-color: #FF5733; /* Light Red */
             border: none;
             color: #fff;
         }
 
         .btn-custom:hover {
-            background-color: #FF2D00;
-            /* Dark Red */
+            background-color: #FF2D00; /* Dark Red */
         }
 
         .footer {
-            background-color: #333;
-            /* Dark Gray */
+            background-color: #333; /* Dark Gray */
             color: #fff;
-        }
-
-        #todoForm {
-            margin: 20px;
-        }
-
-        #todoList {
-            list-style: none;
-            padding: 0;
-        }
-
-        #todoList li {
-            margin: 5px 0;
         }
     </style>
 </head>
@@ -98,7 +77,7 @@
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand" href="#">Restaurant Name</a>
+        <a class="navbar-brand" href="#">MY RESTAURANT</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -115,85 +94,106 @@
                     <a class="nav-link" href="#">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Profile</a>
+                    <a class="nav-link" href="profile">Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="signup">Sign up</a>
+                    <a class="nav-link" href="logout">Logout</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="login">Login</a>
-                </li>
+    
             </ul>
-        </div>
+        </div>  
     </nav>
 
     <!-- Hero Section -->
     <section class="hero text-center py-5">
-        <h1>Welcome to Our Restaurant</h1>
+        <h1>Welcome to MY RESTAURANT</h1>
         <p>Explore our delicious menu items</p>
     </section>
 
     <!-- Food Items Cards Section -->
-    <h1>Todo List</h1>
-    <div id="todoForm">
-        <form id="addTodoForm">
-            <input type="text" id="todoText" placeholder="Enter a new todo">
-            <button type="submit">Add Todo</button>
-        </form>
-    </div>
-    <h2>Your Todos:</h2>
-    <ul id="todoList"></ul>
+    <section class="container my-5">
+        <h2 class="text-center mb-4">Our Menu</h2>
+        <div class="row">
+            <!-- Food Item Card 1 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="../images/d0bd7c9405ac87f6aa65e31fe55800941632716575.avif" class="card-img-top" alt="Food Item 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Food Item 1</h5>
+                        <p class="card-text">Description of the food item.</p>
+                        <p class="card-text">Price: $9.99</p>
+                        <button class="btn btn-custom">Order Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Food Item Card 2 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="food2.jpg" class="card-img-top" alt="Food Item 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Food Item 2</h5>
+                        <p class="card-text">Description of the food item.</p>
+                        <p class="card-text">Price: $11.99</p>
+                        <button class="btn btn-custom">Order Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Food Item Card 3 -->
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="food3.jpg" class="card-img-top" alt="Food Item 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Food Item 3</h5>
+                        <p class="card-text">Description of the food item.</p>
+                        <p class="card-text">Price: $8.99</p>
+                        <button class="btn btn-custom">Order Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-5">
+                <div class="card">
+                    <img src="food3.jpg" class="card-img-top" alt="Food Item 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Food Item 3</h5>
+                        <p class="card-text">Description of the food item.</p>
+                        <p class="card-text">Price: $8.99</p>
+                        <button class="btn btn-custom">Order Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-5">
+                <div class="card">
+                    <img src="food3.jpg" class="card-img-top" alt="Food Item 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Food Item 3</h5>
+                        <p class="card-text">Description of the food item.</p>
+                        <p class="card-text">Price: $8.99</p>
+                        <button class="btn btn-custom">Order Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-5">
+                <div class="card">
+                    <img src="food3.jpg" class="card-img-top" alt="Food Item 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Food Item 3</h5>
+                        <p class="card-text">Description of the food item.</p>
+                        <p class="card-text">Price: $8.99</p>
+                        <button class="btn btn-custom">Order Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more food item cards as needed -->
+        </div>
+    </section>
 
     <!-- Footer -->
-
-    <script>
-        // Function to add a new todo to the list
-        function addTodoToList(todoText) {
-            const todoList = document.getElementById("todoList");
-            const listItem = document.createElement("li");
-            listItem.textContent = todoText;
-            todoList.appendChild(listItem);
-        }
-
-        // Fetch existing todos from the server
-        fetch("/")
-            .then((response) => response.json())
-            .then((todos) => {
-                todos.forEach((todo) => {
-                    addTodoToList(todo.text);
-                });
-            })
-            .catch((error) => {
-                console.error("Error fetching todos: ", error);
-            });
-
-        // Handle form submission to create a new todo
-        const addTodoForm = document.getElementById("addTodoForm");
-        addTodoForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-            const todoText = document.getElementById("todoText").value;
-            if (todoText) {
-                console.log(todoText);
-                // Send a request to create a new todo on the server
-                fetch("/", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ text: todoText })
-                    
-                })
-                    .then((response) => response.json())
-                    .then((newTodo) => {
-                        addTodoToList(newTodo.text);
-                        document.getElementById("todoText").value = ""; // Clear the input field
-                    })
-                    .catch((error) => {
-                        console.error("Error creating todo: ", error);
-                    });
-            }
-        });
-    </script>
+    <footer class="footer text-center py-3">
+        <p>&copy; 2023 Restaurant MY RESTAURANT</p>
+    </footer>
 
     <!-- Include Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
