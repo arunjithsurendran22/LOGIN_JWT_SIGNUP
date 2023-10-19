@@ -59,7 +59,7 @@ const signup = async (req, res) => {
       password,
     });
     console.log(response);
-    return res.redirect("/");
+    return res.redirect("/login");
   } catch (error) {
     console.error(error);
     if (error.code === 11000) {
