@@ -38,7 +38,7 @@
         }
 
         .login-container:hover {
-            background-color: #444;
+            background-color: #160101;
             /* Darken the background on hover */
         }
 
@@ -136,7 +136,7 @@
         <div class="row d-flex justify-content-center">
             <div class="col-md-6 login-container">
                 <h2 class="mb-4 text-white">LOGIN</h2>
-                <form action="/signup" method="POST" class="py-5 text-white" id="loginForm">
+                <form action="/login" method="POST" class="py-5 text-white" id="loginForm">
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" class="form-control text-white" id="email" name="email">
@@ -187,9 +187,9 @@
                 passwordError.style.display = "block";
                 passwordError.innerHTML = "Password must be at least 6 characters long.";
                 event.preventDefault();
-            } else if (passwordInput.value.length >= 10) {
+            } else if (passwordInput.value.length >= 15) {
                 passwordError.style.display = "block";
-                passwordError.innerHTML = "Password must be less than 10 characters.";
+                passwordError.innerHTML = "Password must be less than 15 characters.";
                 event.preventDefault();
             } else if (!specialCharacterCheck.test(passwordInput.value)) {
                 passwordError.style.display = "block";

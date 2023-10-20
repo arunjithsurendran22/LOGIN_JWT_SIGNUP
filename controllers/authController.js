@@ -52,8 +52,8 @@ const verifyUserLogin = async (email, password) => {
 const signup = async (req, res) => {
   const { email, password: plainTextPassword } = req.body;
   const password = await bcrypt.hash(plainTextPassword, salt);
-
   try {
+    
     const response = await User.create({
       email,
       password,
@@ -66,10 +66,12 @@ const signup = async (req, res) => {
       return res
         .status(400)
         .json({ status: "error", error: "Email already exists" });
+        
     }
     return res
       .status(500)
       .json({ status: "error", error: "Internal server error" });
+    
   }
 };
 

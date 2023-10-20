@@ -189,9 +189,9 @@
                 passwordError.style.display = "block";
                 passwordError.innerHTML = "Password must be at least 6 characters long.";
                 event.preventDefault();
-            } else if (passwordInput.value.length >= 10) {
+            } else if (passwordInput.value.length >= 15) {
                 passwordError.style.display = "block";
-                passwordError.innerHTML = "Password must be less than 10 characters.";
+                passwordError.innerHTML = "Password must be less than 15 characters.";
                 event.preventDefault();
             } else if (!specialCharacterCheck.test(passwordInput.value)) {
                 passwordError.style.display = "block";
