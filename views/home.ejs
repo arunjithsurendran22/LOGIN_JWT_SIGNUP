@@ -12,10 +12,12 @@
     <style>
         /* Custom CSS for added styles */
         body {
-            background: linear-gradient(to bottom, #FF5733, #FF2D00); /* Gradient from light red to dark red */
+            /* background: linear-gradient(to bottom, #FF5733, #FF2D00); */
         }
+
         .navbar {
-            background-color: #333; /* Dark Gray */
+            background-color: #333;
+            /* Dark Gray */
         }
 
         .navbar-dark .navbar-nav .nav-link {
@@ -24,52 +26,6 @@
 
         .navbar-dark .navbar-toggler-icon {
             background-color: #fff;
-        }
-
-        .hero {
-            background-image: url('hero-bg.jpg');
-            background-size: cover;
-            background-position: center;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-        }
-
-        .card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-        }
-
-        .card-title {
-            color: #333; /* Dark Gray */
-        }
-
-        .card-text {
-            color: #555; /* Gray */
-        }
-
-        .btn-custom {
-            background-color: #FF5733; /* Light Red */
-            border: none;
-            color: #fff;
-        }
-
-        .btn-custom:hover {
-            background-color: #FF2D00; /* Dark Red */
-        }
-
-        .footer {
-            background-color: #333; /* Dark Gray */
-            color: #fff;
         }
     </style>
 </head>
@@ -99,106 +55,46 @@
                 <li class="nav-item">
                     <a class="nav-link" href="logout">Logout</a>
                 </li>
-    
+
             </ul>
-        </div>  
+        </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero text-center py-5">
-        <h1>Welcome to MY RESTAURANT</h1>
-        <p>Explore our delicious menu items</p>
-    </section>
-
-    <!-- Food Items Cards Section -->
-    <section class="container my-5">
-        <h2 class="text-center mb-4">Our Menu</h2>
-        <div class="row">
-            <!-- Food Item Card 1 -->
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="../images/d0bd7c9405ac87f6aa65e31fe55800941632716575.avif" class="card-img-top" alt="Food Item 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Food Item 1</h5>
-                        <p class="card-text">Description of the food item.</p>
-                        <p class="card-text">Price: $9.99</p>
-                        <button class="btn btn-custom">Order Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Food Item Card 2 -->
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="food2.jpg" class="card-img-top" alt="Food Item 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Food Item 2</h5>
-                        <p class="card-text">Description of the food item.</p>
-                        <p class="card-text">Price: $11.99</p>
-                        <button class="btn btn-custom">Order Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Food Item Card 3 -->
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="food3.jpg" class="card-img-top" alt="Food Item 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Food Item 3</h5>
-                        <p class="card-text">Description of the food item.</p>
-                        <p class="card-text">Price: $8.99</p>
-                        <button class="btn btn-custom">Order Now</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mt-5">
-                <div class="card">
-                    <img src="food3.jpg" class="card-img-top" alt="Food Item 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Food Item 3</h5>
-                        <p class="card-text">Description of the food item.</p>
-                        <p class="card-text">Price: $8.99</p>
-                        <button class="btn btn-custom">Order Now</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mt-5">
-                <div class="card">
-                    <img src="food3.jpg" class="card-img-top" alt="Food Item 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Food Item 3</h5>
-                        <p class="card-text">Description of the food item.</p>
-                        <p class="card-text">Price: $8.99</p>
-                        <button class="btn btn-custom">Order Now</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mt-5">
-                <div class="card">
-                    <img src="food3.jpg" class="card-img-top" alt="Food Item 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Food Item 3</h5>
-                        <p class="card-text">Description of the food item.</p>
-                        <p class="card-text">Price: $8.99</p>
-                        <button class="btn btn-custom">Order Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Add more food item cards as needed -->
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer text-center py-3">
-        <p>&copy; 2023 Restaurant MY RESTAURANT</p>
-    </footer>
+    <!-- ----------------------------------------------- -->
+    <h1>CRUD App</h1>
+    <div>
+        <input type="text" id="name" placeholder="Enter name">
+        <input type="text" id="email" placeholder="Enter email">
+        <button onclick="addUser()">Add User</button>
+    </div>
+    <ul id="userList"></ul>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <!-- Include Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        //GET DATA FROM SERVER
+        function fetchUsers() {
+            axios.get('./api/users')
+                .then(response => {
+                    const userList=document.getElementById('userList')
+                    userList.innerHTML=''
+
+                    response.data.forEach(user=>{
+                        const li=document.createElement('li')
+                        li.textContent=`Name:${user.name},Email:${user.email}`
+
+                        const updateButton=document.createElement('button')
+                        updateButton.textContent='UPDATE'
+                        
+                    })
+                })
+        }
+
+    </script>
 </body>
 
 </html>

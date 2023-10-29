@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static("public"));
+app.use(cors());
 
 // data base  connection
 mongoose
@@ -29,11 +31,11 @@ mongoose
 
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
-
+const crudRoutes = require("./routes/crudRoutes");
 
 app.use(authRoutes);
 app.use(userRoutes);
-
+app.use(crudRoutes);
 
 const PORT = process.env.PORT || 3000;
 

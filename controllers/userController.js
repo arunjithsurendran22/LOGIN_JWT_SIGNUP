@@ -68,7 +68,10 @@ const logout = (req, res) => {
 };
 
 const loginGet =(req,res)=>{
-  res.render('login')
+  const data ={
+    pageTitle:'LOGIN PAGE'
+  }
+  res.render('login',data)
 }
 const signupGet=(req,res)=>{
   res.render('signup')
