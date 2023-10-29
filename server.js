@@ -31,11 +31,11 @@ mongoose
 
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
-const crudRoutes = require("./routes/crudRoutes");
+const todoRoutes = require("./routes/todoRoutes");
 
 app.use(authRoutes);
 app.use(userRoutes);
-app.use(crudRoutes);
+app.use(todoRoutes);
 
 const PORT = process.env.PORT || 3000;
 

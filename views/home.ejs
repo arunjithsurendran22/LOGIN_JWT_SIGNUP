@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant Home</title>
+    <title>TODO APPLICATION</title>
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Include your custom styles in a separate CSS file -->
@@ -12,7 +12,9 @@
     <style>
         /* Custom CSS for added styles */
         body {
-            /* background: linear-gradient(to bottom, #FF5733, #FF2D00); */
+            background-color: background: rgb(255, 87, 51);
+            background: radial-gradient(circle, rgba(255, 87, 51, 1) 15%, rgba(228, 40, 18, 1) 59%);
+            ;
         }
 
         .navbar {
@@ -27,28 +29,36 @@
         .navbar-dark .navbar-toggler-icon {
             background-color: #fff;
         }
+
+        .list-group-item {
+            font-size: 20px;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        .deletebtn {
+            float: right;
+        }
+
+        .editbtn {
+            float: right;
+        }
+
+        
     </style>
 </head>
 
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand" href="#">MY RESTAURANT</a>
+        <a class="navbar-brand" href="#">TO DO LIST</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Menu</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="profile">Profile</a>
                 </li>
@@ -61,13 +71,20 @@
     </nav>
 
     <!-- ----------------------------------------------- -->
-    <h1>CRUD App</h1>
-    <div>
-        <input type="text" id="name" placeholder="Enter name">
-        <input type="text" id="email" placeholder="Enter email">
-        <button onclick="addUser()">Add User</button>
+    <div class="container mt-4">
+        <h1 class="text-center "
+            style="color: chartreuse;font-size: 50px; font-weight: 800;text-shadow: 7px 5px 11px black;">TODO APP</h1>
+        <div class="row mb-3">
+            <div class="col-8">
+                <input type="text" id="taskInput" class="form-control shadow-lg" placeholder="Enter a task">
+            </div>
+            <div class="col-4">
+                <button onclick="addTodo()" class="btn btn-success btn-block shadow-lg ">Add Task</button>
+            </div>
+        </div>
+        <ul id="todoList" class="list-group">
+        </ul>
     </div>
-    <ul id="userList"></ul>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <!-- Include Bootstrap JS and jQuery -->
@@ -77,23 +94,78 @@
 
     <script>
         //GET DATA FROM SERVER
-        function fetchUsers() {
-            axios.get('./api/users')
+        function fetchTodos() {
+            axios.get('/api/todos')
                 .then(response => {
-                    const userList=document.getElementById('userList')
-                    userList.innerHTML=''
-
-                    response.data.forEach(user=>{
-                        const li=document.createElement('li')
-                        li.textContent=`Name:${user.name},Email:${user.email}`
-
-                        const updateButton=document.createElement('button')
-                        updateButton.textContent='UPDATE'
-                        
-                    })
+                    const todoList = document.getElementById('todoList');
+                    todoList.innerHTML = '';
+                    console.log(response);
+                    response.data.forEach(todo => {
+                        const li = document.createElement('li');
+                        li.className = 'list-group-item';
+                        li.textContent = todo.task;
+                        const editButton = document.createElement('button');
+                        editButton.textContent = 'Edit';
+                        editButton.className = 'editbtn  btn btn-primary btn-sm shadow mx-2 px-5';
+                        editButton.onclick = () => editTodo(todo._id, todo.task);
+                        const deleteButton = document.createElement('button');
+                        deleteButton.textContent = 'Delete';
+                        deleteButton.className = 'deletebtn btn btn-danger btn-sm ml-2 shadow mx-5 px-5 ';
+                        deleteButton.onclick = () => deleteTodo(todo._id);
+                        li.appendChild(editButton);
+                        li.appendChild(deleteButton);
+                        todoList.appendChild(li);
+                    });
                 })
+                .catch(error => {
+                    console.error(error);
+                });
         }
 
+
+        //POST DATA TO SERVER
+        function addTodo() {
+            const taskInput = document.getElementById('taskInput');
+            const task = taskInput.value;
+            if (task.trim() !== '') {
+                axios.post('/api/todos', { task })
+                    .then(response => {
+                        fetchTodos();
+                        taskInput.value = '';
+                        console.log(response);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
+        }
+
+        //UPDATE DATA TO SERVER
+        function editTodo(id, currentTask) {
+            const updatedTask = prompt('Edit task:', currentTask);
+            if (updatedTask !== null) {
+                axios.put(`/api/todos/${id}`, { task: updatedTask })
+                    .then(response => {
+                        fetchTodos();
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
+        }
+
+        //DELETE USER DATA
+        function deleteTodo(id) {
+            axios.delete(`/api/todos/${id}`)
+                .then(response => {
+                    fetchTodos();
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+
+        fetchTodos();
     </script>
 </body>
 
