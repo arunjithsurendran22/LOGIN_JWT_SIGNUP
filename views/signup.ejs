@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>signup Page</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -136,11 +139,14 @@
         <div class="row d-flex justify-content-center">
             <div class="col-md-6 login-container">
                 <h2 class="mb-4 text-white">SIGNUP</h2>
-                <form action="/signup" method="POST" class="py-5 text-white" id="loginForm">
+                <form action="/signup" method="POST" class="py-5 text-white" id="signupForm">
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" class="form-control text-white" id="email" name="email">
                         <div class="invalid-feedback" id="emailError"></div>
+                        <!-- Add an alert container in your HTML -->
+                        <div id="alert" class="alert-container"></div>
+
                     </div>
                     <div class="form-group">
                         <label for="password ">Password</label>
@@ -154,23 +160,31 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+
     <script>
-        const loginForm = document.getElementById("loginForm");
-        loginForm.addEventListener("submit", function (event) {
+        const signupForm = document.getElementById("signupForm");
+        const alertDiv = document.getElementById("alert");
+
+        signupForm.addEventListener("submit", async function (event) {
             const emailInput = document.getElementById("email");
             const passwordInput = document.getElementById("password");
             const emailError = document.getElementById("emailError");
             const passwordError = document.getElementById("passwordError");
-        
+
             // Regular expression for a valid email format
             var emailCheck = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             // Regular expression to check for at least one special character
             var specialCharacterCheck = /[@$!%*?&#]/;
-        
+
             // Reset error messages
             emailError.style.display = "none";
             passwordError.style.display = "none";
-        
+
+
+
             if (emailInput.value === "") {
                 emailError.style.display = "block";
                 emailError.innerHTML = "Email is required.";
@@ -180,7 +194,7 @@
                 emailError.innerHTML = "Enter a valid email address (e.g., user@example.com).";
                 event.preventDefault();
             }
-        
+
             if (passwordInput.value === "") {
                 passwordError.style.display = "block";
                 passwordError.innerHTML = "Password is required.";
@@ -198,8 +212,51 @@
                 passwordError.innerHTML = "Password must contain at least one special character (@, $, !, %, *, ?, #, or &).";
                 event.preventDefault();
             }
+
+            if (emailError.style.display === "none" && passwordError.style.display === "none") {
+                const formData = new FormData(signupForm);
+                axios
+                    .post("/signup", {
+                        email: formData.get("email"),
+                        password: formData.get("password"),
+                    })
+                    .then(function (response) {
+                        if (response.data.status === "ok") {
+                           
+                            Toastify({
+                                text: response.data.message,
+                                duration: 5000,
+                                gravity: "top",
+                                backgroundColor: "green",
+                            }).showToast();
+                        } else if (response.data.status === "error") {
+                            if (response.data.error === "Email already exists") {
+                             
+                                Toastify({
+                                    text: response.data.error,
+                                    duration: 5000,
+                                    gravity: "top",
+                                    backgroundColor: "red",
+                                }).showToast();
+                            } else {
+                                
+                                Toastify({
+                                    text: response.data.error,
+                                    duration: 5000,
+                                    gravity: "top",
+                                    backgroundColor: "red",
+                                }).showToast();
+                            }
+                        }
+                    })
+                    .catch(function (error) {
+                        console.error(error);
+                    });
+            }
+
+
         });
-        
+
         const loginButton = document.getElementById("loginBtn");
         loginButton.addEventListener("click", function () {
             this.classList.add("rotate");
@@ -208,8 +265,8 @@
             }, 1000);
         });
     </script>
-    
-    
+
+
 
 </body>
 

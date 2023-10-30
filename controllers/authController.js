@@ -53,25 +53,27 @@ const signup = async (req, res) => {
   const { email, password: plainTextPassword } = req.body;
   const password = await bcrypt.hash(plainTextPassword, salt);
   try {
-    
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+      // Email already exists, send a response to the frontend
+      return res
+        .status(400)
+        .json({ status: "error", error: "Email already exists" });
+    }
+
     const response = await User.create({
       email,
       password,
     });
     console.log(response);
     return res.redirect("/login");
+    
   } catch (error) {
     console.error(error);
-    if (error.code === 11000) {
-      return res
-        .status(400)
-        .json({ status: "error", error: "Email already exists" });
-        
-    }
     return res
       .status(500)
       .json({ status: "error", error: "Internal server error" });
-    
   }
 };
 
@@ -95,5 +97,4 @@ const login = async (req, res) => {
   }
 };
 
-
-module.exports = { signup, login  };
+module.exports = { signup, login };

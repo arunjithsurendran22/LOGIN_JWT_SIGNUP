@@ -4,7 +4,6 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 const authenticateUser = (req, res, next) => {
   const token = req.cookies.token;
-
   if (!token) {
     return res.status(401).json({ error: "Unauthorized: No token provided" });
   }
@@ -13,6 +12,7 @@ const authenticateUser = (req, res, next) => {
     if (err) {
       return res.status(401).json({ error: "Unauthorized: Invalid token" });
     }
+  
     req.user = user;
     next();
   });
