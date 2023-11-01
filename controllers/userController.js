@@ -57,7 +57,7 @@ const updateProfile = async (req, res) => {
   } else {
     res.redirect("/login");
   }
-}
+};
 
 //LOGOUT
 const logout = (req, res) => {
@@ -66,15 +66,13 @@ const logout = (req, res) => {
   res.redirect("/login"); // Redirect the user to the login page after logout
 };
 
-const loginGet =(req,res)=>{
-  const data ={
-    pageTitle:'LOGIN PAGE'
-  }
-  res.render('login',data)
-}
-const signupGet=(req,res)=>{
-  res.render('signup')
-}
+//GET LOGIN PAGE
+const loginGet = (req, res) => {
+  res.render("login",{ error: '' });
+};
+//GET SIGN UP PAGE
+const signupGet = (req, res) => {
+  res.render("signup", { error: '' });
+};
 
-
-module.exports = {home,profile,updateProfile,loginGet,signupGet,logout}
+module.exports = { home, profile, updateProfile, loginGet, signupGet, logout };

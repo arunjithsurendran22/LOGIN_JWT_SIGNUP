@@ -5,10 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>signup Page</title>
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <style>
         body {
             background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(190, 224, 69, 1) 100%);
@@ -96,6 +94,8 @@
             transform: rotate(10deg);
         }
 
+
+
         @keyframes shake {
             0% {
                 transform: translateX(0);
@@ -135,10 +135,14 @@
 </head>
 
 <body>
+
+
+
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="col-md-6 login-container">
                 <h2 class="mb-4 text-white">SIGNUP</h2>
+
                 <form action="/signup" method="POST" class="py-5 text-white" id="signupForm">
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -162,6 +166,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
 
 
     <script>
@@ -212,49 +217,6 @@
                 passwordError.innerHTML = "Password must contain at least one special character (@, $, !, %, *, ?, #, or &).";
                 event.preventDefault();
             }
-
-            if (emailError.style.display === "none" && passwordError.style.display === "none") {
-                const formData = new FormData(signupForm);
-                axios
-                    .post("/signup", {
-                        email: formData.get("email"),
-                        password: formData.get("password"),
-                    })
-                    .then(function (response) {
-                        if (response.data.status === "ok") {
-                           
-                            Toastify({
-                                text: response.data.message,
-                                duration: 5000,
-                                gravity: "top",
-                                backgroundColor: "green",
-                            }).showToast();
-                        } else if (response.data.status === "error") {
-                            if (response.data.error === "Email already exists") {
-                             
-                                Toastify({
-                                    text: response.data.error,
-                                    duration: 5000,
-                                    gravity: "top",
-                                    backgroundColor: "red",
-                                }).showToast();
-                            } else {
-                                
-                                Toastify({
-                                    text: response.data.error,
-                                    duration: 5000,
-                                    gravity: "top",
-                                    backgroundColor: "red",
-                                }).showToast();
-                            }
-                        }
-                    })
-                    .catch(function (error) {
-                        console.error(error);
-                    });
-            }
-
-
         });
 
         const loginButton = document.getElementById("loginBtn");
@@ -264,6 +226,22 @@
                 this.classList.remove("rotate");
             }, 1000);
         });
+
+        // Function to show Toastify notification
+        function showToast(message) {
+            Toastify({
+                text: message,
+                duration: 5000,
+                gravity: 'top',
+                position: 'center', 
+                backgroundColor: 'red',
+            }).showToast();
+        }
+        // Check if an error message is present and show a toast notification
+        const error = "<%= error %>";
+        if (error) {
+            showToast(error);
+        }
     </script>
 
 

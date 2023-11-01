@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const session = require("express-session");
 require("dotenv").config();
 
 const app = express();
@@ -11,7 +12,16 @@ const app = express();
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cookieParser());
+
+app.use(
+  session({
+    secret: "NotSoSecret", // Change this to a secret key
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+
+app.use(cookieParser("NotSoSecret"));
 app.use(express.static("public"));
 app.use(cors());
 

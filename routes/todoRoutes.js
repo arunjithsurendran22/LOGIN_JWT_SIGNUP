@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 const todoController = require("../controllers/todoController");
-const authenticateUser = require("../JWT/authMiddleWare"); 
+const authenticateUser = require("../JWT/authMiddleWare");
 
 // Apply the authenticateUser middleware to secure the routes
 router.get("/api/todos", authenticateUser, todoController.listTodos);

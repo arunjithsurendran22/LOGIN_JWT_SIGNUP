@@ -54,12 +54,12 @@ const signup = async (req, res) => {
   const password = await bcrypt.hash(plainTextPassword, salt);
   try {
     const existingUser = await User.findOne({ email });
-
     if (existingUser) {
-      // Email already exists, send a response to the frontend
-      return res
-        .status(400)
-        .json({ status: "error", error: "Email already exists" });
+      const error = "Email already exists"; // Replace with your actual error message
+      return res.render("signup", { error });
+      // return res
+      //   .status(400)
+      //   .json({ status: "error", error: "Email already exists" });
     }
 
     const response = await User.create({
@@ -68,7 +68,6 @@ const signup = async (req, res) => {
     });
     console.log(response);
     return res.redirect("/login");
-    
   } catch (error) {
     console.error(error);
     return res
@@ -92,6 +91,14 @@ const login = async (req, res) => {
     });
 
     res.redirect("/home");
+  } else if (
+    response.status === "error" &&
+    response.error === "Invalid password"
+  ) {
+    // res.status(401).json(response);
+    // Show a Toastify notification for an invalid password
+    const errorMessage = "Invalid password. Please try again.";
+    res.render("login", { error: errorMessage });
   } else {
     res.status(401).json(response);
   }
